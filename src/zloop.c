@@ -766,6 +766,10 @@ zloop_start (zloop_t *self)
             ticket = (s_ticket_t *) zlistx_last (self->tickets);
         }
 
+        //  Check if timers changed pollset
+        if (self->need_rebuild)
+            continue;
+
         //  Handle any readers and pollers that are ready
         size_t item_nbr;
         for (item_nbr = 0; item_nbr < self->poll_size && rc >= 0; item_nbr++) {
