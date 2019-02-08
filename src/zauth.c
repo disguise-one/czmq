@@ -56,7 +56,7 @@ s_self_destroy (self_t **self_p)
             zsock_unbind (self->handler, ZAP_ENDPOINT);
             zsock_destroy (&self->handler);
         }
-        free (self);
+        freen (self);
         *self_p = NULL;
     }
 }
@@ -204,17 +204,17 @@ s_zap_request_destroy (zap_request_t **self_p)
     assert (self_p);
     if (*self_p) {
         zap_request_t *self = *self_p;
-        free (self->version);
-        free (self->sequence);
-        free (self->domain);
-        free (self->address);
-        free (self->identity);
-        free (self->mechanism);
-        free (self->username);
-        free (self->password);
-        free (self->client_key);
-        free (self->principal);
-        free (self);
+        freen (self->version);
+        freen (self->sequence);
+        freen (self->domain);
+        freen (self->address);
+        freen (self->identity);
+        freen (self->mechanism);
+        freen (self->username);
+        freen (self->password);
+        freen (self->client_key);
+        freen (self->principal);
+        freen (self);
         *self_p = NULL;
     }
 }

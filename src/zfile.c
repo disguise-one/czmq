@@ -116,10 +116,10 @@ zfile_destroy (zfile_t **self_p)
         zdigest_destroy (&self->digest);
         if (self->handle)
             fclose (self->handle);
-        free (self->fullname);
-        free (self->curline);
-        free (self->link);
-        free (self);
+        freen (self->fullname);
+        freen (self->curline);
+        freen (self->link);
+        freen (self);
         *self_p = NULL;
     }
 }
@@ -362,11 +362,11 @@ zfile_output (zfile_t *self)
 
     //  Wipe symbolic link if that's what the file was
     if (self->link) {
-        free (self->link);
+        freen (self->link);
         self->link = NULL;
     }
     rc = zsys_dir_create (file_path);
-    free (file_path);
+    freen (file_path);
     if (rc != 0)
         return -1;
 

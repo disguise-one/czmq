@@ -43,11 +43,11 @@ s_interface_destroy (interface_t **self_p)
     assert (self_p);
     interface_t *self = *self_p;
     if (self) {
-        free (self->name);
-        free (self->address);
-        free (self->netmask);
-        free (self->broadcast);
-        free (self);
+        freen (self->name);
+        freen (self->address);
+        freen (self->netmask);
+        freen (self->broadcast);
+        freen (self);
         *self_p = NULL;
     }
 }
@@ -265,7 +265,7 @@ s_reload (ziflist_t *self, bool ipv6)
                     zlistx_add_end (list, item);
             }
         }
-        free (ifconfig.ifc_buf);
+        freen (ifconfig.ifc_buf);
         close (sock);
     }
 
@@ -328,11 +328,10 @@ s_reload (ziflist_t *self, bool ipv6)
             if (item)
                 zlistx_add_end (list, item);
         }
-        free (asciiFriendlyName);
+        freen (asciiFriendlyName);
         cur_address = cur_address->Next;
     }
-	if (pip_addresses)
-        free (pip_addresses);
+    freen (pip_addresses);
 
 #   else
 #       error "Interface detection TBD on this operating system"
